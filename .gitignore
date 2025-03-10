@@ -1,0 +1,17 @@
+# Ignorar archivos específicos
+.name
+*.log
+*.tmp
+
+# Ignorar carpetas de caché y archivos generados por PyCharm
+__pycache__/
+.idea/
+*.pyc
+
+# Ignorar entornos virtuales
+venv/
+env/
+
+# Ignorar configuraciones de sistema
+.DS_Store
+Thumbs.db
