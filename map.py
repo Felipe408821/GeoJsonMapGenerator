@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 
 def create_map(city):
     """Crea y visualiza un mapa de la ciudad con carreteras y paradas de autobús."""
+    # pylint: disable=invalid-name
 
     # Obtenemos los datos
     graph = get_road_network(city)
@@ -77,7 +78,7 @@ def get_bus_stops(city):
     """Obtiene las paradas de autobús de la ciudad."""
     tags = {'highway': 'bus_stop'}
     bus_stops = ox.geometries.geometries_from_place(city, tags)
-    bus_stops['id'] = range(1, len(bus_stops) + 1)  # IDs desde 1 hasta N
+    bus_stops['id'] = range(1, len(bus_stops) + 1)
     return bus_stops
 
 
@@ -85,9 +86,8 @@ def distance(p1, p2):
     return np.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
 
 
-def export_image(fig, file_name, format):
-    """Exporta el mapa a un formato imagen."""
-    fig.savefig("images/"+file_name+"."+format, dpi=600, bbox_inches='tight', pad_inches=0, format=format)
+def export_image(fig, file_name, file_format):
+    fig.savefig("images/" + file_name +"." + file_format, dpi=600, bbox_inches='tight', pad_inches=0, format=file_format)
 
     print("Imagen exportada correctamente.")
 
@@ -98,16 +98,16 @@ def export_shapefiles(directory, graph, bus_stops):
     nodos, aristas = ox.graph_to_gdfs(graph)
 
     # Exporta los nodos a Shapefile
-    nodosPath = path_output(directory, "nodos.shp")
-    nodos.to_file(nodosPath)
+    nodos_path = path_output(directory, "nodos.shp")
+    nodos.to_file(nodos_path)
 
     # Exporta las aristas a Shapefile
-    aristasPath = path_output(directory, "aristas.shp")
-    aristas.to_file(aristasPath)
+    aristas_path = path_output(directory, "aristas.shp")
+    aristas.to_file(aristas_path)
 
     # Exporta las paradas de autobús a Shapefile
-    busPath = path_output(directory, "paradas.shp")
-    bus_stops.to_file(busPath)
+    bus_path = path_output(directory, "paradas.shp")
+    bus_stops.to_file(bus_path)
 
     print("Datos exportados a Shapefile correctamente.")
 
