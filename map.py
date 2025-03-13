@@ -1,15 +1,19 @@
 import os
 import osmnx as ox
 import numpy as np
+import geopandas as gpd
 import matplotlib.pyplot as plt
+import matplotlib.lines as mlines
+import matplotlib.patches as mpatches
 
 
-def create_map(city):
+def create_map(city, flag_image, flag_geojson):
     """Crea y visualiza un mapa de la ciudad con carreteras y paradas de autobús."""
     # pylint: disable=invalid-name
 
     # Obtenemos los datos
     graph = get_road_network(city)
+    buildings = get_buildings(city)
     bus_stops = get_bus_stops(city)
 
     # Crea una figura y un eje para la red de carreteras
@@ -22,6 +26,9 @@ def create_map(city):
         show=False,
         close=False
     )
+
+    if not buildings.empty:
+        buildings.plot(ax=ax, color='blue', alpha=0.5, label='Edificios')
 
     # Si se encontraron paradas de autobús, plotea las paradas
     if not bus_stops.empty:
@@ -59,14 +66,24 @@ def create_map(city):
 
     # Personaliza el gráfico
     ax.set_title('Red de carreteras y paradas de autobús en Majadahonda', fontsize=32)
-    plt.legend(prop={'size': 28}, markerscale=20)
-    plt.show()
 
-    # Exportar el mapa a una imagen
-    export_image(fig, "MajadahondaMap", "png")
+    # Crear manualmente los elementos de la leyenda
+    road_line = mlines.Line2D([], [], color='gray', linewidth=2, label='Carreteras')
+    bus_stop_marker = mlines.Line2D([], [], color='red', marker='o', linestyle='None',
+                                    markersize=10, label='Paradas de autobús')
+    building_patch = mpatches.Patch(color='blue', alpha=0.5, label='Edificios')
 
-    # Exportar el grafo y las paradas a Shapefile
-    export_shapefiles("shapefiles", graph, bus_stops)
+    # Añadir la leyenda
+    plt.legend(handles=[road_line, bus_stop_marker, building_patch], prop={'size': 28})
+
+    if flag_image:
+        plt.show()
+        # Exportar el mapa a una imagen
+        export_image(fig, "MajadahondaMap", "png")
+
+    if flag_geojson:
+        # Exportar el grafo y las paradas a Shapefile
+        export_geojson("geojson", graph, buildings, bus_stops)
 
 
 def get_road_network(city, network_type="drive"):
@@ -74,43 +91,61 @@ def get_road_network(city, network_type="drive"):
     return ox.graph_from_place(city, network_type=network_type)
 
 
+def get_buildings(city):
+    """Obtiene las edificaciones de la ciudad."""
+    return ox.features.features_from_place(city, tags={'building': True})
+
+
 def get_bus_stops(city):
     """Obtiene las paradas de autobús de la ciudad."""
     tags = {'highway': 'bus_stop'}
-    bus_stops = ox.geometries.geometries_from_place(city, tags)
+    bus_stops = ox.features.features_from_place(city, tags)
     bus_stops['id'] = range(1, len(bus_stops) + 1)
     return bus_stops
 
 
 def distance(p1, p2):
+    # pylint: disable=invalid-name
     return np.sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
 
 
 def export_image(fig, file_name, file_format):
-    fig.savefig("images/" + file_name +"." + file_format, dpi=600, bbox_inches='tight', pad_inches=0, format=file_format)
+    directory = "images"
+    # Crear el directorio si no existe
+    check_directory(directory)
+
+    fig.savefig(directory + file_name + "." + file_format, dpi=600, pad_inches=0,
+                bbox_inches='tight', format=file_format)
 
     print("Imagen exportada correctamente.")
 
 
-def export_shapefiles(directory, graph, bus_stops):
-    """Exporta el grafo y las paradas de autobús a Shapefile."""
+def export_geojson(directory, graph, buildings, bus_stops):
+    """Exporta el grafo y las paradas de autobús a GeoJson."""
+    # Crear el directorio si no existe
+    check_directory(directory)
+
     # Convierte el grafo en GeoDataFrames (nodos y aristas)
     nodos, aristas = ox.graph_to_gdfs(graph)
 
-    # Exporta los nodos a Shapefile
-    nodos_path = path_output(directory, "nodos.shp")
-    nodos.to_file(nodos_path)
+    # Exporta los nodos
+    nodos.to_file(os.path.join(directory, "nodos.geojson"), driver="GeoJSON")
 
-    # Exporta las aristas a Shapefile
-    aristas_path = path_output(directory, "aristas.shp")
-    aristas.to_file(aristas_path)
+    aristas["osmid"] = aristas["osmid"].apply(lambda x: x[0] if isinstance(x, list) else x)
+    # Exporta las aristas
+    aristas.to_file(os.path.join(directory, "aristas.geojson"), driver="GeoJSON")
 
-    # Exporta las paradas de autobús a Shapefile
-    bus_path = path_output(directory, "paradas.shp")
-    bus_stops.to_file(bus_path)
+    buildings = buildings[buildings.geometry.type.isin(['Polygon', 'MultiPolygon'])]
+    # Exportar edificios
+    buildings.to_file(os.path.join(directory, "edificios.geojson"), driver="GeoJSON")
 
-    print("Datos exportados a Shapefile correctamente.")
+    # Exporta las paradas de autobús
+    bus_stops.to_file(os.path.join(directory, "paradas.geojson"), driver="GeoJSON")
+
+    print("Datos exportados a GeoJson correctamente.")
 
 
-def path_output(directory, file_name):
-    return os.path.join(directory, file_name)
+def check_directory(directory):
+    # Crear el directorio si no existe
+    if not os.path.exists(directory):
+        os.makedirs(directory)
