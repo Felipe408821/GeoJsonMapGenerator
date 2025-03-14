@@ -1,10 +1,10 @@
 import os
 import osmnx as ox
 import numpy as np
-import geopandas as gpd
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 import matplotlib.patches as mpatches
+from shapely.geometry import Point
 
 
 def create_map(city, flag_image, flag_geojson):
@@ -15,6 +15,8 @@ def create_map(city, flag_image, flag_geojson):
     graph = get_road_network(city)
     buildings = get_buildings(city)
     bus_stops = get_bus_stops(city)
+
+    graph, bus_stops = integrate_bus_stops_into_graph(graph, bus_stops)
 
     # Crea una figura y un eje para la red de carreteras
     fig, ax = ox.plot_graph(
@@ -86,6 +88,54 @@ def create_map(city, flag_image, flag_geojson):
         export_geojson("geojson", graph, buildings, bus_stops)
 
 
+def integrate_bus_stops_into_graph(G, bus_stops):
+    """Integra las paradas de autobús conectándolas a la arista más cercana sin eliminar aristas."""
+    new_g = G.copy()
+    nodes, edges = ox.graph_to_gdfs(G)
+
+    new_bus_stops = bus_stops.copy()
+    new_bus_stops["node_id"] = None  # Nueva columna para los nodos asignados
+    new_bus_stops["geometry"] = None  # Se actualizarán las geometrías con las nuevas posiciones
+
+    for idx, row in bus_stops.iterrows():
+        bus_point = row.geometry
+        closest_edge = None
+        min_distance = float('inf')
+        projected_point = None
+
+        # Buscar la arista más cercana
+        for edge_idx, edge in edges.iterrows():
+            line = edge.geometry  # Línea de la arista
+            proj = line.interpolate(line.project(bus_point))  # Proyectar parada sobre la arista
+            dist = bus_point.distance(proj)
+
+            if dist < min_distance:
+                min_distance = dist
+                closest_edge = edge_idx  # edge_idx es (u, v, key)
+                projected_point = proj
+
+        # Si encontramos una arista válida, agregar la parada como nodo
+        if closest_edge and projected_point:
+            u, v, key = closest_edge  # Extraer nodos de la arista
+            # edge_data = G.get_edge_data(u, v, key)
+            edge_data = new_g.edges(u, v, key).copy() # Copiamos los atributos de la arista
+
+            new_node = max(new_g.nodes) + 1  # Nuevo ID de nodo
+            new_g.add_node(new_node, x=projected_point.x, y=projected_point.y)
+
+            # Conectar la parada con el grafo
+            new_g.add_edge(u, new_node, **edge_data)
+            new_g.add_edge(new_node, v, **edge_data)
+
+            new_g.remove_edge(u, v, key)  # Eliminar la arista original
+
+            # Actualizar bus_stops con el nuevo nodo y coordenadas
+            new_bus_stops.at[idx, "node_id"] = new_node
+            new_bus_stops.at[idx, "geometry"] = Point(projected_point.x, projected_point.y)
+
+    return new_g, new_bus_stops
+
+
 def get_road_network(city, network_type="drive"):
     """Obtiene la red de carreteras de la ciudad."""
     return ox.graph_from_place(city, network_type=network_type)
@@ -114,7 +164,7 @@ def export_image(fig, file_name, file_format):
     # Crear el directorio si no existe
     check_directory(directory)
 
-    fig.savefig(directory + file_name + "." + file_format, dpi=600, pad_inches=0,
+    fig.savefig(directory + "/" + file_name + "." + file_format, dpi=600, pad_inches=0,
                 bbox_inches='tight', format=file_format)
 
     print("Imagen exportada correctamente.")
