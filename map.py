@@ -1,10 +1,11 @@
 import os
 import osmnx as ox
 import numpy as np
+import networkx as nx
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
-import matplotlib.patches as mpatches
 from shapely.geometry import Point
+import matplotlib.patches as mpatches
 
 
 def create_map(city, flag_image, flag_geojson):
@@ -89,9 +90,9 @@ def create_map(city, flag_image, flag_geojson):
 
 
 def integrate_bus_stops_into_graph(G, bus_stops):
-    """Integra las paradas de autobús conectándolas a la arista más cercana sin eliminar aristas."""
+    """Integra las paradas de autobús conectándolas a la arista más cercana."""
     new_g = G.copy()
-    nodes, edges = ox.graph_to_gdfs(G)
+    nodes, edges = ox.graph_to_gdfs(new_g)
 
     new_bus_stops = bus_stops.copy()
     new_bus_stops["node_id"] = None  # Nueva columna para los nodos asignados
@@ -114,21 +115,32 @@ def integrate_bus_stops_into_graph(G, bus_stops):
                 closest_edge = edge_idx  # edge_idx es (u, v, key)
                 projected_point = proj
 
+        #print("Arista más cercana: ", closest_edge)
+
         # Si encontramos una arista válida, agregar la parada como nodo
         if closest_edge and projected_point:
             u, v, key = closest_edge  # Extraer nodos de la arista
-            # edge_data = G.get_edge_data(u, v, key)
-            edge_data = new_g.edges(u, v, key).copy() # Copiamos los atributos de la arista
+            edge_data = G.get_edge_data(u, v, key).copy() # Copiamos los atributos de la arista
 
             new_node = max(new_g.nodes) + 1  # Nuevo ID de nodo
             new_g.add_node(new_node, x=projected_point.x, y=projected_point.y)
 
+            #print("Creamos nodo: ", new_node, projected_point.x, projected_point.y)
+
             # Conectar la parada con el grafo
             new_g.add_edge(u, new_node, **edge_data)
+            #print("Creamos arista1: ", u, new_node)
             new_g.add_edge(new_node, v, **edge_data)
+            #print("Creamos arista2: ", new_node, v)
 
-            new_g.remove_edge(u, v, key)  # Eliminar la arista original
+            if new_g.has_edge(u, v, key):
+                #print("Eliminando arista ", u, v)
+                new_g.remove_edge(u, v, key)
+            else:
+                pass
+                # print("Arista ", u, v, " no existe")
 
+            #print("\n")
             # Actualizar bus_stops con el nuevo nodo y coordenadas
             new_bus_stops.at[idx, "node_id"] = new_node
             new_bus_stops.at[idx, "geometry"] = Point(projected_point.x, projected_point.y)
@@ -199,3 +211,28 @@ def check_directory(directory):
     # Crear el directorio si no existe
     if not os.path.exists(directory):
         os.makedirs(directory)
+
+
+def check_grafo(graph):
+
+    nodes, edges = ox.graph_to_gdfs(graph)
+
+    # Verificar conexiones de los nuevos nodos
+    for idx, row in nodes.iterrows():
+        node_id = row["osmid"]
+        neighbors = list(graph.neighbors(node_id))
+
+        if len(neighbors) < 2:
+            print(f"ERROR: Nodo {node_id} tiene solo {len(neighbors)} conexiones.")
+        else:
+            print(f"Nodo {node_id} correctamente conectado con {len(neighbors)} nodos.")
+
+    # Verificar si el grafo es fuertemente conexo
+    if nx.is_strongly_connected(graph):
+        print("El grafo es fuertemente conexo. Todas las paradas están integradas correctamente.")
+    else:
+        print("ERROR: El grafo NO es fuertemente conexo. Algunas paradas podrían no estar conectadas.")
+
+    # Si el grafo no es conexo, ver qué componentes están desconectados
+    components = list(nx.strongly_connected_components(graph))
+    print(f"Hay {len(components)} componentes en el grafo.")
