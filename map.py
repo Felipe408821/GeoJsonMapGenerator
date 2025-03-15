@@ -2,6 +2,7 @@ import os
 import osmnx as ox
 import numpy as np
 import networkx as nx
+import shapely.geometry
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 from shapely.geometry import Point
@@ -18,6 +19,8 @@ def create_map(city, flag_image, flag_geojson):
     bus_stops = get_bus_stops(city)
 
     graph, bus_stops = integrate_bus_stops_into_graph(graph, bus_stops)
+
+    check_grafo(graph, bus_stops)
 
     # Crea una figura y un eje para la red de carreteras
     fig, ax = ox.plot_graph(
@@ -123,22 +126,41 @@ def integrate_bus_stops_into_graph(G, bus_stops):
             edge_data = G.get_edge_data(u, v, key).copy() # Copiamos los atributos de la arista
 
             new_node = max(new_g.nodes) + 1  # Nuevo ID de nodo
+
+            if new_g.has_node(u) and new_g.has_node(v):
+                pass
+            else:
+                print(f"Error: No se puede agregar la arista ({u}, {v}) porque uno de los nodos no existe")
+
             new_g.add_node(new_node, x=projected_point.x, y=projected_point.y)
 
-            #print("Creamos nodo: ", new_node, projected_point.x, projected_point.y)
-
-            # Conectar la parada con el grafo
-            new_g.add_edge(u, new_node, **edge_data)
-            #print("Creamos arista1: ", u, new_node)
-            new_g.add_edge(new_node, v, **edge_data)
-            #print("Creamos arista2: ", new_node, v)
+            print("Creamos nodo: ", new_node, projected_point.x, projected_point.y)
 
             if new_g.has_edge(u, v, key):
-                #print("Eliminando arista ", u, v)
+                print("Eliminando arista ", u, v)
                 new_g.remove_edge(u, v, key)
             else:
                 pass
-                # print("Arista ", u, v, " no existe")
+                # print("Arista ", u, v, " no existe"
+
+            edge_data['geometry'] = shapely.geometry.LineString(
+                [(new_g.nodes[u]["x"], new_g.nodes[u]["y"]),
+                 (new_g.nodes[new_node]["x"], new_g.nodes[new_node]["y"])]
+            )
+            new_g.add_edge(u, new_node, **edge_data)
+            print("Creamos arista1: ", u, new_node)
+
+            edge_data['geometry'] = shapely.geometry.LineString(
+                [(new_g.nodes[new_node]["x"], new_g.nodes[new_node]["y"]),
+                (new_g.nodes[v]["x"], new_g.nodes[v]["y"])]
+            )
+            new_g.add_edge(new_node, v, **edge_data)
+            print("Creamos arista2: ", new_node, v)
+
+            if new_g.has_edge(u, new_node) and new_g.has_edge(new_node, v):
+                print(f"Conexión correcta: ({u}, {new_node}) y ({new_node}, {v})")
+            else:
+                print(f"Error: No se crearon correctamente las conexiones desde {u} hacia {v}")
 
             #print("\n")
             # Actualizar bus_stops con el nuevo nodo y coordenadas
@@ -213,17 +235,17 @@ def check_directory(directory):
         os.makedirs(directory)
 
 
-def check_grafo(graph):
-
-    nodes, edges = ox.graph_to_gdfs(graph)
+def check_grafo(graph, bus_stops):
 
     # Verificar conexiones de los nuevos nodos
-    for idx, row in nodes.iterrows():
-        node_id = row["osmid"]
+    for idx, row in bus_stops.iterrows():
+        node_id = row["node_id"]
         neighbors = list(graph.neighbors(node_id))
 
+
+
         if len(neighbors) < 2:
-            print(f"ERROR: Nodo {node_id} tiene solo {len(neighbors)} conexiones.")
+            print(f"ERROR: Nodo {node_id} tiene solo {len(neighbors)} conexiones.", neighbors)
         else:
             print(f"Nodo {node_id} correctamente conectado con {len(neighbors)} nodos.")
 
@@ -235,4 +257,4 @@ def check_grafo(graph):
 
     # Si el grafo no es conexo, ver qué componentes están desconectados
     components = list(nx.strongly_connected_components(graph))
-    print(f"Hay {len(components)} componentes en el grafo.")
+    print(f"Hay {len(components)} componentes desconectados en el grafo.")
