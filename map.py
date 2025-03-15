@@ -1,7 +1,6 @@
 import os
 import osmnx as ox
 import numpy as np
-import networkx as nx
 import shapely.geometry
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
@@ -19,8 +18,6 @@ def create_map(city, flag_image, flag_geojson):
     bus_stops = get_bus_stops(city)
 
     graph, bus_stops = integrate_bus_stops_into_graph(graph, bus_stops)
-
-    check_grafo(graph, bus_stops)
 
     # Crea una figura y un eje para la red de carreteras
     fig, ax = ox.plot_graph(
@@ -201,7 +198,7 @@ def export_image(fig, file_name, file_format):
     fig.savefig(directory + "/" + file_name + "." + file_format, dpi=600, pad_inches=0,
                 bbox_inches='tight', format=file_format)
 
-    print("Imagen exportada correctamente.")
+    print("[INFO] Imagen exportada correctamente.")
 
 
 def export_geojson(directory, graph, buildings, bus_stops):
@@ -226,35 +223,10 @@ def export_geojson(directory, graph, buildings, bus_stops):
     # Exporta las paradas de autobús
     bus_stops.to_file(os.path.join(directory, "paradas.geojson"), driver="GeoJSON")
 
-    print("Datos exportados a GeoJson correctamente.")
+    print("[INFO] Datos exportados a GeoJson correctamente.")
 
 
 def check_directory(directory):
     # Crear el directorio si no existe
     if not os.path.exists(directory):
         os.makedirs(directory)
-
-
-def check_grafo(graph, bus_stops):
-
-    # Verificar conexiones de los nuevos nodos
-    for idx, row in bus_stops.iterrows():
-        node_id = row["node_id"]
-        neighbors = list(graph.neighbors(node_id))
-
-
-
-        if len(neighbors) < 2:
-            print(f"ERROR: Nodo {node_id} tiene solo {len(neighbors)} conexiones.", neighbors)
-        else:
-            print(f"Nodo {node_id} correctamente conectado con {len(neighbors)} nodos.")
-
-    # Verificar si el grafo es fuertemente conexo
-    if nx.is_strongly_connected(graph):
-        print("El grafo es fuertemente conexo. Todas las paradas están integradas correctamente.")
-    else:
-        print("ERROR: El grafo NO es fuertemente conexo. Algunas paradas podrían no estar conectadas.")
-
-    # Si el grafo no es conexo, ver qué componentes están desconectados
-    components = list(nx.strongly_connected_components(graph))
-    print(f"Hay {len(components)} componentes desconectados en el grafo.")
