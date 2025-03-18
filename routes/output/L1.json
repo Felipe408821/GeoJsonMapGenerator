@@ -1,0 +1,198 @@
+{
+    "Parada 1": {
+        "stopName": "J. Rodrigo - Hospital Puerta De Hierro",
+        "stopCodeSection": "17923"
+    },
+    "Parada 2": {
+        "stopName": "Manuel Falla - Urg. Hospital Pta. De Hierro",
+        "stopCodeSection": "17685"
+    },
+    "Parada 3": {
+        "stopName": "Moreras - C. C. Centro Oeste",
+        "stopCodeSection": "11385"
+    },
+    "Parada 4": {
+        "stopName": "Limonero - Ciruela",
+        "stopCodeSection": "11417"
+    },
+    "Parada 5": {
+        "stopName": "Goleta - Barco",
+        "stopCodeSection": "12747"
+    },
+    "Parada 6": {
+        "stopName": "Fragata - Bajel",
+        "stopCodeSection": "12994"
+    },
+    "Parada 7": {
+        "stopName": "Fragata - Galera",
+        "stopCodeSection": "12992"
+    },
+    "Parada 8": {
+        "stopName": "Fragata - Bergantín",
+        "stopCodeSection": "18070"
+    },
+    "Parada 9": {
+        "stopName": "Fragata - Bergantín",
+        "stopCodeSection": "12990"
+    },
+    "Parada 10": {
+        "stopName": "Fragata - Galera",
+        "stopCodeSection": "12991"
+    },
+    "Parada 11": {
+        "stopName": "Fragata - Barco",
+        "stopCodeSection": "12993"
+    },
+    "Parada 12": {
+        "stopName": "Ctra. Boadilla - Puerta Sierra Iii",
+        "stopCodeSection": "12748"
+    },
+    "Parada 13": {
+        "stopName": "Ctra. Pozuelo - Francisco Umbral",
+        "stopCodeSection": "18073"
+    },
+    "Parada 14": {
+        "stopName": "Neptuno - Alcalde Aurelio Tallón",
+        "stopCodeSection": "18612"
+    },
+    "Parada 15": {
+        "stopName": "Santo Tomás - Pza. Lealtad",
+        "stopCodeSection": "11835"
+    },
+    "Parada 16": {
+        "stopName": "Santo Tomás - Granadilla",
+        "stopCodeSection": "11854"
+    },
+    "Parada 17": {
+        "stopName": "Av. Doctor Marañón - Charaima",
+        "stopCodeSection": "11858"
+    },
+    "Parada 18": {
+        "stopName": "Av. Doctor Marañón - Av. Guadarrama",
+        "stopCodeSection": "17330"
+    },
+    "Parada 19": {
+        "stopName": "Av. Guadarrama - Virgen Del Rosario",
+        "stopCodeSection": "18498"
+    },
+    "Parada 20": {
+        "stopName": "Av. Guadarrama - Instituto",
+        "stopCodeSection": "11861"
+    },
+    "Parada 21": {
+        "stopName": "Av. Guadarrama - Urb. Monte Luxor",
+        "stopCodeSection": "06518"
+    },
+    "Parada 22": {
+        "stopName": "Av. Guadarrama - Centro De Especialidades",
+        "stopCodeSection": "06424"
+    },
+    "Parada 23": {
+        "stopName": "Av. Guadarrama - Av. Reyes Católicos",
+        "stopCodeSection": "06205"
+    },
+    "Parada 24": {
+        "stopName": "Av. España - Av. Reyes Católicos",
+        "stopCodeSection": "17742"
+    },
+    "Parada 25": {
+        "stopName": "Av. España - Centro De Salud",
+        "stopCodeSection": "12500"
+    },
+    "Parada 26": {
+        "stopName": "Av. España - Colombia",
+        "stopCodeSection": "12504"
+    },
+    "Parada 27": {
+        "stopName": "Doctor Calero - Fundadores",
+        "stopCodeSection": "06251"
+    },
+    "Parada 28": {
+        "stopName": "Ctra. Plantío - Cerro Del Aire",
+        "stopCodeSection": "06252"
+    },
+    "Parada 29": {
+        "stopName": "Ctra. Plantío - Novotiendas",
+        "stopCodeSection": "06253"
+    },
+    "Parada 30": {
+        "stopName": "Ctra. Plantío - Los Sauces",
+        "stopCodeSection": "06254"
+    },
+    "Parada 31": {
+        "stopName": "Norias - Est. Majadahonda",
+        "stopCodeSection": "13003"
+    },
+    "Parada 32": {
+        "stopName": "Norias - Parque",
+        "stopCodeSection": "17700"
+    },
+    "Parada 33": {
+        "stopName": "Norias - Instituto",
+        "stopCodeSection": "12905"
+    },
+    "Parada 34": {
+        "stopName": "Norias - Pinos",
+        "stopCodeSection": "12906"
+    },
+    "Parada 35": {
+        "stopName": "Av. Claveles - Norias",
+        "stopCodeSection": "12907"
+    },
+    "Parada 36": {
+        "stopName": "Av. Claveles - Los Olmos",
+        "stopCodeSection": "09407"
+    },
+    "Parada 37": {
+        "stopName": "Av. España - El Zoco",
+        "stopCodeSection": "12995"
+    },
+    "Parada 38": {
+        "stopName": "Av. España - Ctra. Pozuelo",
+        "stopCodeSection": "11421"
+    },
+    "Parada 39": {
+        "stopName": "Ctra. Pozuelo - Ins. Nacional De Sanidad",
+        "stopCodeSection": "08792"
+    },
+    "Parada 40": {
+        "stopName": "Ctra. Pozuelo - Ciudad Deportiva",
+        "stopCodeSection": "12066"
+    },
+    "Parada 41": {
+        "stopName": "Ítaca - Homero",
+        "stopCodeSection": "09368"
+    },
+    "Parada 42": {
+        "stopName": "Ctra. Pozuelo - Urb. Pinar Plantío",
+        "stopCodeSection": "08790"
+    },
+    "Parada 43": {
+        "stopName": "Ctra. Pozuelo - Residencia",
+        "stopCodeSection": "08788"
+    },
+    "Parada 44": {
+        "stopName": "Sarasate - Ctra. Pozuelo",
+        "stopCodeSection": "12679"
+    },
+    "Parada 45": {
+        "stopName": "Sarasate - Joaquín Turina",
+        "stopCodeSection": "15188"
+    },
+    "Parada 46": {
+        "stopName": "Joaquín Turina - Centro De Salud",
+        "stopCodeSection": "17270"
+    },
+    "Parada 47": {
+        "stopName": "Manuel De Falla - Ruperto Chapí",
+        "stopCodeSection": "17724"
+    },
+    "Parada 48": {
+        "stopName": "Ruperto Chapí - Joaquin Rodrigo",
+        "stopCodeSection": "17925"
+    },
+    "Parada 49": {
+        "stopName": "J. Rodrigo - Hospital Puerta De Hierro",
+        "stopCodeSection": "17923"
+    }
+}

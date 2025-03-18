@@ -37,6 +37,38 @@ def save_json(datos, ruta):
         print("[INFO]: Datos sobre la ruta especificada generados correctamente.")
 
 
+def check_route():
+    """Compara los códigos de parada del archivo JSON con las referencias del archivo GEOJSON."""
+
+    # Cargar los datos del archivo JSON
+    with open("routes/output/651A.json", 'r', encoding='utf-8') as f:
+        paradas_json = json.load(f)
+
+    # Cargar los datos del archivo GEOJSON
+    with open("geojson/paradas.geojson", 'r', encoding='utf-8') as f:
+        paradas_geojson = json.load(f)
+
+    # Extraer los códigos de parada del JSON
+    codigos_json = {parada['stopCodeSection'] for parada in paradas_json.values()}
+
+    # Extraer las referencias del GEOJSON
+    referencias_geojson = {feature['properties']['ref'] for feature in paradas_geojson['features'] if
+                           'ref' in feature['properties']}
+
+    # Encontrar las paradas en el JSON que no están en el GEOJSON
+    paradas_no_encontradas = codigos_json - referencias_geojson
+
+    # Imprimir las paradas no encontradas
+    if paradas_no_encontradas:
+        print("Las siguientes paradas del JSON no se encontraron en el GEOJSON:")
+        for codigo in paradas_no_encontradas:
+            for nombre_parada, detalles in paradas_json.items():
+                if detalles['stopCodeSection'] == codigo:
+                    print(f"  - {nombre_parada} - {detalles['stopName']} (Código: {codigo})")
+    else:
+        print("Todas las paradas del JSON se encontraron en el GEOJSON.")
+
+
 def create_route(input_json, output_json):
     stop_contents = read_json("routes/input/" + input_json)
     stops_dict, stops_id_list = procesar_paradas(stop_contents)

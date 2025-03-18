@@ -1,0 +1,142 @@
+{
+    "Parada 1": {
+        "stopName": "Intercambiador Moncloa | Islas 2 y 3",
+        "stopCodeSection": "17480"
+    },
+    "Parada 2": {
+        "stopName": "Av. Puerta De Hierro - Agronomos",
+        "stopCodeSection": "8-1332"
+    },
+    "Parada 3": {
+        "stopName": "Av. Puerta De Hierro - Palacio Moncloa",
+        "stopCodeSection": "8-1334"
+    },
+    "Parada 4": {
+        "stopName": "Av. Puerta De Hierro - Filosofia B",
+        "stopCodeSection": "8-1336"
+    },
+    "Parada 5": {
+        "stopName": "Facultad De Veterinaria",
+        "stopCodeSection": "8-1338"
+    },
+    "Parada 6": {
+        "stopName": "Martín Pescador - Av. Victoria",
+        "stopCodeSection": "06255"
+    },
+    "Parada 7": {
+        "stopName": "Av. Victoria - Virgen De Los Olmos",
+        "stopCodeSection": "06225"
+    },
+    "Parada 8": {
+        "stopName": "Av. Victoria - Saiz De La Calleja",
+        "stopCodeSection": "06226"
+    },
+    "Parada 9": {
+        "stopName": "Av. Victoria - Cimarra",
+        "stopCodeSection": "06227"
+    },
+    "Parada 10": {
+        "stopName": "Av. Victoria - Federico Agusti",
+        "stopCodeSection": "06228"
+    },
+    "Parada 11": {
+        "stopName": "Av. Victoria - Av. Estación",
+        "stopCodeSection": "06229"
+    },
+    "Parada 12": {
+        "stopName": "Ctra. Plantío - Club De Tenis",
+        "stopCodeSection": "06230"
+    },
+    "Parada 13": {
+        "stopName": "Ctra. Plantío - Urb. La Sacedilla",
+        "stopCodeSection": "09094"
+    },
+    "Parada 14": {
+        "stopName": "Ctra. Plantío - Est. Majadahonda",
+        "stopCodeSection": "07304"
+    },
+    "Parada 15": {
+        "stopName": "Ctra. Plantío - Los Sauces",
+        "stopCodeSection": "06232"
+    },
+    "Parada 16": {
+        "stopName": "Ctra. Plantío - Novotiendas",
+        "stopCodeSection": "06233"
+    },
+    "Parada 17": {
+        "stopName": "Ctra. Plantío - Cerro Del Aire",
+        "stopCodeSection": "06234"
+    },
+    "Parada 18": {
+        "stopName": "Doctor Calero - Nicaragua",
+        "stopCodeSection": "06235"
+    },
+    "Parada 19": {
+        "stopName": "Doctor Calero - Jardinillos",
+        "stopCodeSection": "06236"
+    },
+    "Parada 20": {
+        "stopName": "Av. Reyes Católicos - Colombia",
+        "stopCodeSection": "06215"
+    },
+    "Parada 21": {
+        "stopName": "Av. Reyes Católicos - Panamá",
+        "stopCodeSection": "06237"
+    },
+    "Parada 22": {
+        "stopName": "Av. Reyes Católicos - Av. España",
+        "stopCodeSection": "06216"
+    },
+    "Parada 23": {
+        "stopName": "Av. Guadarrama - Av. Reyes Católicos",
+        "stopCodeSection": "06176"
+    },
+    "Parada 24": {
+        "stopName": "Av. Guadarrama - Centro De Especialidades",
+        "stopCodeSection": "06240"
+    },
+    "Parada 25": {
+        "stopName": "Av. Guadarrama - Centro Deportivo",
+        "stopCodeSection": "11859"
+    },
+    "Parada 26": {
+        "stopName": "Av. Guadarrama - Instituto",
+        "stopCodeSection": "11860"
+    },
+    "Parada 27": {
+        "stopName": "Puerto De Los Leones - Charaima",
+        "stopCodeSection": "11862"
+    },
+    "Parada 28": {
+        "stopName": "Charaima - Valle Del Arcipreste",
+        "stopCodeSection": "11865"
+    },
+    "Parada 29": {
+        "stopName": "Charaima - Virgen Del Rosario",
+        "stopCodeSection": "11867"
+    },
+    "Parada 30": {
+        "stopName": "San Vicente - Pza. San Roque",
+        "stopCodeSection": "09409"
+    },
+    "Parada 31": {
+        "stopName": "Santo Tomás - San Jaime",
+        "stopCodeSection": "11855"
+    },
+    "Parada 32": {
+        "stopName": "Santo Tomás - Pza. Lealtad",
+        "stopCodeSection": "10491"
+    },
+    "Parada 33": {
+        "stopName": "Neptuno - Alcalde Aurelio Tallón",
+        "stopCodeSection": "18613"
+    },
+    "Parada 34": {
+        "stopName": "Francisco Umbral - Las Viñas",
+        "stopCodeSection": "06177"
+    },
+    "Parada 35": {
+        "stopName": "Av. España - El Zoco",
+        "stopCodeSection": "12995"
+    }
+}

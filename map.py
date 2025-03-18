@@ -25,13 +25,15 @@ def create_map(city, flag_image, flag_geojson):
         figsize=(30, 30),
         node_color='b',
         node_size=0,
-        edge_color='gray',
+        edge_color=(64/255, 64/255, 64/255),
         show=False,
         close=False
     )
 
+    ax.set_facecolor((242 / 255, 243 / 255, 244 / 255))
+
     if not buildings.empty:
-        buildings.plot(ax=ax, color='blue', alpha=0.5, label='Edificios')
+        buildings.plot(ax=ax, color=(170/255, 170/255, 170/255), alpha=0.5, label='Edificios')
 
     # Si se encontraron paradas de autobús, plotea las paradas
     if not bus_stops.empty:
@@ -58,10 +60,10 @@ def create_map(city, flag_image, flag_geojson):
                 xytext=(dx, dy),  # Desplazamiento del texto
                 textcoords='offset points',  # Usar puntos de desplazamiento
                 fontsize=8,  # Tamaño de la fuente
-                color='white',  # Color del texto
+                color='black',  # Color del texto
                 ha='center',  # Alineación horizontal centrada
                 va='center',  # Alineación vertical centrada
-                arrowprops=dict(arrowstyle='->', color='white', lw=0.5)  # Flecha
+                arrowprops=dict(arrowstyle='->', color='black', lw=0.5)  # Flecha
             )
 
             # Guarda la posición del texto para evitar solapamientos futuros
@@ -71,10 +73,10 @@ def create_map(city, flag_image, flag_geojson):
     ax.set_title('Red de carreteras y paradas de autobús en Majadahonda', fontsize=32)
 
     # Crear manualmente los elementos de la leyenda
-    road_line = mlines.Line2D([], [], color='gray', linewidth=2, label='Carreteras')
+    road_line = mlines.Line2D([], [], color=(64/255, 64/255, 64/255), linewidth=2, label='Carreteras')
     bus_stop_marker = mlines.Line2D([], [], color='red', marker='o', linestyle='None',
                                     markersize=10, label='Paradas de autobús')
-    building_patch = mpatches.Patch(color='blue', alpha=0.5, label='Edificios')
+    building_patch = mpatches.Patch(color=(170/255, 170/255, 170/255), alpha=0.5, label='Edificios')
 
     # Añadir la leyenda
     plt.legend(handles=[road_line, bus_stop_marker, building_patch], prop={'size': 28})
@@ -131,10 +133,10 @@ def integrate_bus_stops_into_graph(G, bus_stops):
 
             new_g.add_node(new_node, x=projected_point.x, y=projected_point.y)
 
-            print("Creamos nodo: ", new_node, projected_point.x, projected_point.y)
+            # print("Creamos nodo: ", new_node, projected_point.x, projected_point.y)
 
             if new_g.has_edge(u, v, key):
-                print("Eliminando arista ", u, v)
+                #print("Eliminando arista ", u, v)
                 new_g.remove_edge(u, v, key)
             else:
                 pass
@@ -145,17 +147,18 @@ def integrate_bus_stops_into_graph(G, bus_stops):
                  (new_g.nodes[new_node]["x"], new_g.nodes[new_node]["y"])]
             )
             new_g.add_edge(u, new_node, **edge_data)
-            print("Creamos arista1: ", u, new_node)
+            # print("Creamos arista1: ", u, new_node)
 
             edge_data['geometry'] = shapely.geometry.LineString(
                 [(new_g.nodes[new_node]["x"], new_g.nodes[new_node]["y"]),
                 (new_g.nodes[v]["x"], new_g.nodes[v]["y"])]
             )
             new_g.add_edge(new_node, v, **edge_data)
-            print("Creamos arista2: ", new_node, v)
+            # print("Creamos arista2: ", new_node, v)
 
             if new_g.has_edge(u, new_node) and new_g.has_edge(new_node, v):
-                print(f"Conexión correcta: ({u}, {new_node}) y ({new_node}, {v})")
+                # print(f"Conexión correcta: ({u}, {new_node}) y ({new_node}, {v})")
+                pass
             else:
                 print(f"Error: No se crearon correctamente las conexiones desde {u} hacia {v}")
 

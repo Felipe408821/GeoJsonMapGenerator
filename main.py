@@ -6,6 +6,6 @@ import map as mapa
 import routes as route
 
 if __name__ == '__main__':
-    #mapa.create_map("Majadahonda, Spain", False, True)
+    mapa.create_map("Majadahonda, Spain", True, False)
 
-    route.create_route("652_ida.json", "652A.json")
+    route.create_route("L2.json", "L2.json")
