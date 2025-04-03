@@ -1,5 +1,8 @@
 import json
 from bs4 import BeautifulSoup
+import numpy as np
+import matplotlib.pyplot as plt
+
 
 def read_json(ruta):
     """Carga un archivo JSON desde la routes especificada."""
@@ -75,3 +78,32 @@ def create_route(input_json, output_json):
     save_json(stops_dict, "routes/output/" + output_json)
 
     print(stops_id_list)
+
+
+
+# Definir la función de demanda
+def Dem(t):
+    return 1 + 0.5 * np.sin((2 * np.pi / 10) * (t - 5)) + 0.5 * np.sin((2 * np.pi / 10) * (t - 16))
+
+if __name__ == '__main__':
+    # Crear un rango de tiempo de 0 a 24 horas
+    t_values = np.linspace(0, 24, 1000)
+    dem_values = Dem(t_values)
+
+    # Graficar la función
+    plt.figure(figsize=(8, 4))
+    plt.plot(t_values, dem_values, label=r"$Dem(t) = 1 + 0.5 \sin\left(\frac{2\pi}{10} (t - 5)\right) + 0.5 \sin\left(\frac{2\pi}{10} (t - 16)\right)$", color='b')
+
+    # Marcar los picos esperados
+    plt.axvline(x=8, color='r', linestyle='--', label="Pico Máximo (8:00)")
+    plt.axvline(x=18, color='g', linestyle='--', label="Pico Máximo (18:00)")
+
+    # Etiquetas y título
+    plt.xlabel("Tiempo (horas)")
+    plt.ylabel("Demanda (Dem)")
+    plt.title("Función de Demanda con Picos a las 8 y 18 horas")
+    plt.legend()
+    plt.grid(True)
+
+    # Mostrar la gráfica
+    plt.show()
