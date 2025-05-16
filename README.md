@@ -1,3 +1,4 @@
+# GeoJsonMapGenerator
 **GeoJsonMapGenerator** is a preprocessing tool designed to generate the geographic and route data required for the **AutoBusRoutingMAS** multi-agent simulation. It provides automated generation of city maps and bus routes in compatible formats for use within the GAMA platform.
 
 The repository includes:
