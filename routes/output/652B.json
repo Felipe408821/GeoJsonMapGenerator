@@ -1,0 +1,110 @@
+{
+    "Parada 1": {
+        "stopName": "Químicos - C. C. Gran Plaza 2",
+        "stopCodeSection": "20611"
+    },
+    "Parada 2": {
+        "stopName": "Arco De Poniente - Ctra. V. Del Pardillo",
+        "stopCodeSection": "17336"
+    },
+    "Parada 3": {
+        "stopName": "Antonio Machado - Granja Del Conde",
+        "stopCodeSection": "17335"
+    },
+    "Parada 4": {
+        "stopName": "Antonio Machado - CºPozo Nuevo",
+        "stopCodeSection": "17333"
+    },
+    "Parada 5": {
+        "stopName": "Av. Doctor Marañón - Miguel Hernández",
+        "stopCodeSection": "17331"
+    },
+    "Parada 6": {
+        "stopName": "Av. Doctor Marañón - San Roque",
+        "stopCodeSection": "06242"
+    },
+    "Parada 7": {
+        "stopName": "Av. Doctor Marañón - Pza. Laguna Vieja",
+        "stopCodeSection": "06203"
+    },
+    "Parada 8": {
+        "stopName": "Doctor Calero - Jardinillos",
+        "stopCodeSection": "06250"
+    },
+    "Parada 9": {
+        "stopName": "Doctor Calero - Fundadores",
+        "stopCodeSection": "06251"
+    },
+    "Parada 10": {
+        "stopName": "Ctra. Plantío - Cerro Del Aire",
+        "stopCodeSection": "06252"
+    },
+    "Parada 11": {
+        "stopName": "Ctra. Plantío - Novotiendas",
+        "stopCodeSection": "06253"
+    },
+    "Parada 12": {
+        "stopName": "Ctra. Plantío - Los Sauces",
+        "stopCodeSection": "06254"
+    },
+    "Parada 13": {
+        "stopName": "Ctra. Plantío - Est. Majadahonda",
+        "stopCodeSection": "07305"
+    },
+    "Parada 14": {
+        "stopName": "Ctra. Plantío - Urb. La Sacedilla",
+        "stopCodeSection": "09093"
+    },
+    "Parada 15": {
+        "stopName": "Ctra. Plantío - Club De Tenis",
+        "stopCodeSection": "06256"
+    },
+    "Parada 16": {
+        "stopName": "Av. Victoria - Av. Estación",
+        "stopCodeSection": "06257"
+    },
+    "Parada 17": {
+        "stopName": "Av. Victoria - Calvo Sotelo",
+        "stopCodeSection": "06258"
+    },
+    "Parada 18": {
+        "stopName": "Av. Victoria - Cimarra",
+        "stopCodeSection": "06259"
+    },
+    "Parada 19": {
+        "stopName": "Av. Victoria - Saiz De La Calleja",
+        "stopCodeSection": "06260"
+    },
+    "Parada 20": {
+        "stopName": "Av. Victoria - Virgen De Los Olmos",
+        "stopCodeSection": "06261"
+    },
+    "Parada 21": {
+        "stopName": "Av. Victoria - Ochandiano",
+        "stopCodeSection": "06262"
+    },
+    "Parada 22": {
+        "stopName": "Av. Padre Huidobro - PºErmita",
+        "stopCodeSection": "06268"
+    },
+    "Parada 23": {
+        "stopName": "Av. Padre Huidobro - Camarines",
+        "stopCodeSection": "8-4311"
+    },
+    "Parada 24": {
+        "stopName": "Escuela Universitaria De Estadistica",
+        "stopCodeSection": "8-23"
+    },
+    "Parada 25": {
+        "stopName": "Av. Puerta De Hierro - Palacio Moncloa",
+        "stopCodeSection": "8-1335"
+    },
+    "Parada 26": {
+        "stopName": "Av. Puerta De Hierro - Agronomos",
+        "stopCodeSection": "8-1333"
+    },
+    "Parada 27": {
+        "stopName": "Intercambiador Moncloa | Islas 2 y 3",
+        "stopCodeSection": "17480"
+    }
+}

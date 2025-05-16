@@ -1,0 +1,138 @@
+{
+    "Parada 1": {
+        "stopName": "Av. España - El Zoco",
+        "stopCodeSection": "06244"
+    },
+    "Parada 2": {
+        "stopName": "Francisco Umbral - Ctra. Boadilla",
+        "stopCodeSection": "18072"
+    },
+    "Parada 3": {
+        "stopName": "Neptuno - Alcalde Aurelio Tallón",
+        "stopCodeSection": "18612"
+    },
+    "Parada 4": {
+        "stopName": "Santo Tomás - Pza. Lealtad",
+        "stopCodeSection": "11835"
+    },
+    "Parada 5": {
+        "stopName": "Santo Tomás - Granadilla",
+        "stopCodeSection": "11854"
+    },
+    "Parada 6": {
+        "stopName": "San Vicente - Pza. San Roque",
+        "stopCodeSection": "11856"
+    },
+    "Parada 7": {
+        "stopName": "Charaima - Doctor Fleming",
+        "stopCodeSection": "11868"
+    },
+    "Parada 8": {
+        "stopName": "Virgen De Loreto - Charaima",
+        "stopCodeSection": "11866"
+    },
+    "Parada 9": {
+        "stopName": "Av. Guadarrama - Instituto",
+        "stopCodeSection": "11861"
+    },
+    "Parada 10": {
+        "stopName": "Av. Guadarrama - Urb. Monte Luxor",
+        "stopCodeSection": "06518"
+    },
+    "Parada 11": {
+        "stopName": "Av. Guadarrama - Centro De Especialidades",
+        "stopCodeSection": "06424"
+    },
+    "Parada 12": {
+        "stopName": "Av. Guadarrama - Av. Reyes Católicos",
+        "stopCodeSection": "06205"
+    },
+    "Parada 13": {
+        "stopName": "Reyes Católicos - Ramón Y Cajal",
+        "stopCodeSection": "06249"
+    },
+    "Parada 14": {
+        "stopName": "Av. Reyes Católicos - Pza. Cruz",
+        "stopCodeSection": "06212"
+    },
+    "Parada 15": {
+        "stopName": "Doctor Calero - Jardinillos",
+        "stopCodeSection": "06250"
+    },
+    "Parada 16": {
+        "stopName": "Doctor Calero - Fundadores",
+        "stopCodeSection": "06251"
+    },
+    "Parada 17": {
+        "stopName": "Ctra. Plantío - Cerro Del Aire",
+        "stopCodeSection": "06252"
+    },
+    "Parada 18": {
+        "stopName": "Ctra. Plantío - Novotiendas",
+        "stopCodeSection": "06253"
+    },
+    "Parada 19": {
+        "stopName": "Ctra. Plantío - Los Sauces",
+        "stopCodeSection": "06254"
+    },
+    "Parada 20": {
+        "stopName": "Ctra. Plantío - Est. Majadahonda",
+        "stopCodeSection": "07305"
+    },
+    "Parada 21": {
+        "stopName": "Ctra. Plantío - Urb. La Sacedilla",
+        "stopCodeSection": "09093"
+    },
+    "Parada 22": {
+        "stopName": "Ctra. Plantío - Club De Tenis",
+        "stopCodeSection": "06256"
+    },
+    "Parada 23": {
+        "stopName": "Av. Victoria - Av. Estación",
+        "stopCodeSection": "06257"
+    },
+    "Parada 24": {
+        "stopName": "Av. Victoria - Calvo Sotelo",
+        "stopCodeSection": "06258"
+    },
+    "Parada 25": {
+        "stopName": "Av. Victoria - Cimarra",
+        "stopCodeSection": "06259"
+    },
+    "Parada 26": {
+        "stopName": "Av. Victoria - Saiz De La Calleja",
+        "stopCodeSection": "06260"
+    },
+    "Parada 27": {
+        "stopName": "Av. Victoria - Virgen De Los Olmos",
+        "stopCodeSection": "06261"
+    },
+    "Parada 28": {
+        "stopName": "Av. Victoria - Ochandiano",
+        "stopCodeSection": "06262"
+    },
+    "Parada 29": {
+        "stopName": "Av. Padre Huidobro - PºErmita",
+        "stopCodeSection": "06268"
+    },
+    "Parada 30": {
+        "stopName": "Av. Padre Huidobro - Camarines",
+        "stopCodeSection": "8-4311"
+    },
+    "Parada 31": {
+        "stopName": "Escuela Universitaria De Estadistica",
+        "stopCodeSection": "8-23"
+    },
+    "Parada 32": {
+        "stopName": "Av. Puerta De Hierro - Palacio Moncloa",
+        "stopCodeSection": "8-1335"
+    },
+    "Parada 33": {
+        "stopName": "Av. Puerta De Hierro - Agronomos",
+        "stopCodeSection": "8-1333"
+    },
+    "Parada 34": {
+        "stopName": "Intercambiador Moncloa | Islas 2 y 3",
+        "stopCodeSection": "17480"
+    }
+}

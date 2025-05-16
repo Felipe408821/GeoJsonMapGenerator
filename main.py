@@ -1,11 +1,11 @@
 """
-Módulo principal para crear un mapa SHP.
+Módulo principal para crear un mapa GEOJSON.
 """
 
-import map as mapa
-import routes as route
+from map import map as mapa
+from routes import routes as route
 
 if __name__ == '__main__':
-    # mapa.create_map("Majadahonda, Spain", True, False)
+    #mapa.create_map("Majadahonda, Spain", False, False)
 
     route.create_route("652_vuelta.json", "652B.json")
