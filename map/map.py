@@ -84,11 +84,11 @@ def create_map(city, flag_image, flag_geojson):
     if flag_image:
         plt.show()
         # Exportar el mapa a una imagen
-        export_image(fig, "MajadahondaMap", "png")
+        export_image(fig, city, "png")
 
     if flag_geojson:
         # Exportar el grafo y las paradas a Shapefile
-        export_geojson("geojson", graph, buildings, bus_stops)
+        export_geojson("map/geojson/"+city, graph, buildings, bus_stops)
 
 
 def integrate_bus_stops_into_graph(G, bus_stops):

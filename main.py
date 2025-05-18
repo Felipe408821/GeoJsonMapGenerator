@@ -118,10 +118,10 @@ class MapRouteApp:
             content.forget()
 
     def _map_options(self, frame):
-        ttk.Checkbutton(frame, text="Guardar mapa como GeoJson", variable=self.show_map).grid(row=0, column=0,
+        ttk.Checkbutton(frame, text="Guardar mapa como imagen", variable=self.show_map).grid(row=0, column=0,
                                                                                               columnspan=2, sticky="w",
                                                                                               pady=2)
-        ttk.Checkbutton(frame, text="Guardar mapa como imagen", variable=self.save_map).grid(row=1, column=0,
+        ttk.Checkbutton(frame, text="Guardar mapa como GeoJson", variable=self.save_map).grid(row=1, column=0,
                                                                                              columnspan=2, sticky="w",
                                                                                              pady=2)
 
