@@ -80,10 +80,10 @@ def create_route(input_json, output_json):
     print(stops_id_list)
 
 
-
 # Definir la función de demanda
 def Dem(t):
     return 1 + 0.5 * np.sin((2 * np.pi / 10) * (t - 5)) + 0.5 * np.sin((2 * np.pi / 10) * (t - 16))
+
 
 if __name__ == '__main__':
     # Crear un rango de tiempo de 0 a 24 horas

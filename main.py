@@ -61,8 +61,8 @@ class MapRouteApp:
         top_bar.pack(fill="x", pady=(0, 5))
 
         # Texto "Powered by:" alineado a la izquierda
-        tk.Label(top_bar, text="Felipe Camacho", bg="#ededed",
-                 fg="#1C1C1E", font=("Helvetica Neue", 10)).pack(side="left")
+        tk.Label(top_bar, text="A. Felipe Camacho Martínez\nTutor: Javier Ignacio Carbo Rubiera", bg="#ededed",
+                 fg="#1C1C1E", justify="left", font=("Helvetica Neue", 10)).pack(side="left")
 
         # Cargar imagen y mostrarla alineada a la derecha
         img_path = "images/logo.png"  # <-- actualiza con tu ruta real
